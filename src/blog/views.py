@@ -8,6 +8,9 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from .pagination import SmallPagination, LargePagination
+
+
 
 def home(request):
     return HttpResponse('<center><h1>welcome to post</h1><center>')
@@ -17,6 +20,7 @@ class PostListCreateAPIView(generics.ListCreateAPIView):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    pagination_class = SmallPagination
 
 class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
