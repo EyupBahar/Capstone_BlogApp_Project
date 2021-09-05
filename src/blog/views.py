@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from .pagination import SmallPagination, LargePagination
-
+from django_filters.rest_framework import DjangoFilterBackend 
 
 
 def home(request):
@@ -18,10 +18,39 @@ def home(request):
 
 class PostListCreateAPIView(generics.ListCreateAPIView):
 
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-id')
     serializer_class = PostSerializer
-    pagination_class = SmallPagination
 
+    pagination_class = SmallPagination
+    filterset_fields = ['category',]
+    # search_fields = ['title','content', "author__authorname"]
+    # ordering_fields = ['publish_date', "title", "author" ]
+
+    # def create(self, **kwargs):
+    #     serializer = PostSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class PostList(generics.ListCreateAPIView):
+#     serializer_class = PostSerializer
+#     queryset = Post.objects.all()
+#     filter_backends = [DjangoFilterBackend,SearchFilter, OrderingFilter]
+#     filterset_fields = ['category']
+#     # search_fields = ['title','content', "author__authorname"]
+#     ordering_fields = ['publish_date', "title", "author" ]
+
+# class PostCreate(generics.ListCreateAPIView):
+#     serializer_class = PostSerializer
+#     queryset = Post.objects.all()
+    
+#     def create(self, **kwargs):
+#         serializer = PostSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Post.objects.all()
