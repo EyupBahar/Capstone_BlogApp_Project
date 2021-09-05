@@ -4,7 +4,7 @@ from .views import (
     # postview,
     # postcreate,
     # postviewcreate,
-    # postdetail,
+    PostDetailAPIView,
     PostListCreateAPIView
 )
 
@@ -13,6 +13,5 @@ urlpatterns = [
     # path('postview/', postview),
     # path('postcreate/', postcreate),
     path('postviewcreate/', PostListCreateAPIView.as_view()),
-    # path('postdetail/<int:pk>/', postdetail),
-    # path('PostListCreateAPIView/<int:pk>/', PostListCreateAPIView)
+    path('postdetail/<int:pk>/', PostDetailAPIView.as_view()),
 ]
