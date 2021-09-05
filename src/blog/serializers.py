@@ -5,5 +5,5 @@ from django.utils.timezone import now
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = '__all__',
-        # fields = ["id","title","user","content","image","publish_date","last_updated","category","status"]
+        # fields = '__all__',
+        fields = ["id","title","author","content","image","publish_date","last_updated","category","status"]
