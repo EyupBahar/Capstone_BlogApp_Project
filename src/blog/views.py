@@ -21,7 +21,7 @@ class PostListCreateAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-id')
     serializer_class = PostSerializer
 
-    pagination_class = SmallPagination
+    # pagination_class = SmallPagination
     filterset_fields = ['category',]
     # search_fields = ['title','content', "author__authorname"]
     # ordering_fields = ['publish_date', "title", "author" ]
