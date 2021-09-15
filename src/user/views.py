@@ -24,7 +24,6 @@ def register_view(request):
             data = serializer.errors
         return Response(data)
 
-
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
 
