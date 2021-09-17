@@ -19,10 +19,10 @@ class Post(models.Model):
         ('d', 'Draft'),
         ('p', 'Published')
     )
-  
+
     title = models.CharField(max_length=100)    
     content = models.TextField()
-    image = models.ImageField(upload_to=user_directory_path, default='no_image.png')
+    image = models.ImageField(upload_to=user_directory_path, default='go.jpg')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     publish_date = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)

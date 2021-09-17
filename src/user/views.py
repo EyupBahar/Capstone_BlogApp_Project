@@ -6,9 +6,9 @@ from rest_framework.authtoken.models import Token
 from . import models
 # Create your views here.
 
-
 @api_view(['POST'])
 def register_view(request):
+    print("req",request.data)
     if request.method == 'POST':
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
@@ -24,6 +24,11 @@ def register_view(request):
             data = serializer.errors
         return Response(data)
 
+    # def create(self, validated_data):
+    #     user= User.objects.create(username=validated_data['username'],email = validated_data['email'])
+    #     user.set_password(validated_data['password'])
+    #     user.save()
+
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
 
@@ -32,7 +37,7 @@ class CustomAuthToken(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-      
+    
         return Response({
             'token': token.key,
             'user_id': user.pk, 

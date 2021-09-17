@@ -11,10 +11,8 @@ from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from .pagination import SmallPagination, LargePagination
 from django_filters.rest_framework import DjangoFilterBackend 
 
-
 def home(request):
     return HttpResponse('<center><h1>welcome to post</h1><center>')
-
 
 class PostListCreateAPIView(generics.ListCreateAPIView):
 
