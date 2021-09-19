@@ -20,6 +20,10 @@ class PostListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
 
     filterset_fields = ['category',]
+
+
+
+    
     # pagination_class = SmallPagination
     # search_fields = ['title','content', "author__authorname"]
     # ordering_fields = ['publish_date', "title", "author" ]
@@ -54,7 +58,6 @@ class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-    
 # class PostListCreateAPIView(ListModelMixin, CreateModelMixin,GenericAPIView):
 #     queryset = Post.objects.all()
 #     serializer_class = PostSerializer
@@ -64,7 +67,6 @@ class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     
 #     def post(self, request):
 #         return self.list(request, *args, **kwargs)
-
 
 
 # @api_view(['GET'])
