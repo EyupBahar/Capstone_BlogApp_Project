@@ -6,4 +6,4 @@ urlpatterns = [
     path('login/', CustomAuthToken.as_view()),
     path('register/', register_view),
     path('logout/', logout_view),
-]   
+]
